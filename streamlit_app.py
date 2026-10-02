@@ -26,7 +26,7 @@ try:
     
     from backend.services.boq_engine import generate_boq_for_project
     from backend.services.excel_export import boq_to_excel_bytes
-    from backend.services.ssr_ingestion_service import ingest_ssr_pdf
+    from backend.services.ssr_ingestion_service import import_ssr_pdf_to_db
     BACKEND_AVAILABLE = True
 except ImportError as e:
     BACKEND_AVAILABLE = False
