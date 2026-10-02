@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: builduser
+      POSTGRES_PASSWORD: buildpass
+      POSTGRES_DB: buildestimate
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  api:
+    build: .
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://builduser:buildpass@db:5432/buildestimate
+    ports:
+      - "8000:8000"
+
+  frontend:
+    image: tiangolo/uvicorn-gunicorn:python3.11
+    volumes:
+      - .:/app
+    environment:
+      API_URL: http://api:8000
+    command: ["/bin/sh", "-c", "pip install -r requirements.txt && streamlit run frontend/app.py --server.port 8501 --server.address 0.0.0.0"]
+    ports:
+      - "8501:8501"
+
+volumes:
+  db_data:

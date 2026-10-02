@@ -1,0 +1,42 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# Pytest
+.pytest_cache/
+
+# Environment / secrets
+.env
+
+# Local database
+dev.db
+*.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Distribution
+dist/
+build/
+*.egg-info/
+
+# Streamlit secrets (local only)
+.streamlit/secrets.toml
+
+# Byte-compiled
+*.pyc
